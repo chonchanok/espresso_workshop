@@ -1,8 +1,12 @@
 package cc.somkiat.myapplication;
 
+import android.support.test.espresso.IdlingRegistry;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.jakewharton.espresso.OkHttp3IdlingResource;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -21,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         final TextView detail = findViewById(R.id.detail);
 
         OkHttpClient client = new OkHttpClient();
+        IdlingResource resource = OkHttp3IdlingResource.create("OkHttp", client);
+        IdlingRegistry.getInstance().register(resource);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(MoshiConverterFactory.create())
