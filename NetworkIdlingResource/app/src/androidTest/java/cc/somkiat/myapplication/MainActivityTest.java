@@ -19,7 +19,14 @@ public class MainActivityTest {
 
     @Test
     public void showDetailOnScreen() {
-        onView(withId(R.id.detail)).check(matches(withText("sunt aut facere repellat provident")));
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        onView(withId(R.id.detail)).check(matches(withText("sunt aut facere repellat provident occaecati excepturi optio reprehenderit")));
     }
 
 }
